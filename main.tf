@@ -28,3 +28,10 @@ resource "yandex_vpc_route_table" "rt" {
     gateway_id         = yandex_vpc_gateway.nat_gateway.id
   }
 }
+
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+    command = "sleep 30 && ansible-playbook test.yml -i hosts.cfg"
+  }
+  depends_on = [yandex_compute_instance.count]
+}
