@@ -327,7 +327,7 @@ ansible_ssh_common_args='-o ProxyCommand="ssh -p 22 -W %h:%p -q ubuntu@${i["netw
 %{~ endfor ~}
 ```
 
-Скриншот получившегося файла [**hosts.cfg**](https://github.com/murtazinilyas/ter_csic/blob/main/hosts.cfg):
+Скриншот получившегося файла **hosts.cfg**:
 
 ![4](https://github.com/murtazinilyas/ter_csic/blob/main/screenshots/t4.png)
 
