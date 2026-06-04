@@ -391,6 +391,23 @@ output "vm_info" {
 Для проверки работы уберите у ВМ внешние адреса(nat=false). Этот вариант используется при работе через bastion-сервер.
 Для зачёта предоставьте код вместе с основной частью задания.
 
+### Решение 6
+
+В файл [**main.tf**](https://github.com/murtazinilyas/ter_csic/blob/terraform-03/main.tf) добавил **null_resource**:
+
+```hcl
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+    command = "sleep 30 && ansible-playbook test.yml -i hosts.cfg"
+  }
+  depends_on = [yandex_compute_instance.count]
+}
+```
+
+Перед запуском ансибл-плейбука добавил команду **sleep 30** для ожидания инициализации на целевых ВМ ssh-демона.
+
+Шаблон [**hosts.tftpl**](https://github.com/murtazinilyas/ter_csic/blob/terraform-03/hosts.tftpl) создал в процессе выполнения задания 4 с текущими условиями.
+
 ### Правила приёма работы
 
 В своём git-репозитории создайте новую ветку terraform-03, закоммитьте в эту ветку свой финальный код проекта. Ответы на задания и необходимые скриншоты оформите в md-файле в ветке terraform-03.
